@@ -14,7 +14,8 @@ Hop onboard grab a cuppa and let’s see where we end up
 
 [see previews](https://www.instagram.com/han_codes/?hl=en)
 
---
+<br>
+
 ## Skip to an experiment
 
 - [01 Circle Grid](https://github.com/hannahleggett/Experiments_GenArt/tree/master/01%20Circle%20Grid)
