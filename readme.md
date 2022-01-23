@@ -1,6 +1,6 @@
 # Generative Art Experiments
-Weekly experiments in a quest to make beautiful things accidentally on purpose
 <br>
+Weekly experiments in a quest to make beautiful things accidentally on purpose
 <br>
 Hop onboard grab a cuppa and let’s see where we end up
 <br>
@@ -8,7 +8,7 @@ Hop onboard grab a cuppa and let’s see where we end up
 
 [see previews](https://www.instagram.com/han_codes/?hl=en)
 
--------------------------------
+----
 ## Index
 
 - [01 Circle Grid](https://github.com/hannahleggett/Experiments_GenArt/tree/master/01%20Circle%20Grid)
