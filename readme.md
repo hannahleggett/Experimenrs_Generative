@@ -4,12 +4,15 @@
 <br>
 Weekly experiments in a quest to make beautiful things accidentally on purpose
 <br>
-•
+• • •
 <br>
 Hop onboard grab a cuppa and let’s see where we end up
 <br>
+• •
+<br>
 👩🏻‍💻✨
 <br>
+• 
 <br>
 
 [see previews](https://www.instagram.com/han_codes/?hl=en)
@@ -30,4 +33,5 @@ I couldn't have made any of these without the wonderful tools, work and tutorial
   - [Tweakpane](https://cocopon.github.io/tweakpane/)
   - [Matt Deslauriers](https://frontendmasters.com/teachers/matt-deslauriers/)
   - [Bruno Imbrizi](https://www.domestika.org/en/courses/2729-creative-coding-making-visuals-with-javascript)
+  - [The Coding Train](https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw)
   - And all the amazing generative artists out there
