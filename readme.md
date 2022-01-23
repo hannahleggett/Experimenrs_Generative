@@ -14,7 +14,7 @@ Hop onboard grab a cuppa and let’s see where we end up
 
 [see previews](https://www.instagram.com/han_codes/?hl=en)
 
-----
+--
 ## Skip to an experiment
 
 - [01 Circle Grid](https://github.com/hannahleggett/Experiments_GenArt/tree/master/01%20Circle%20Grid)
@@ -22,7 +22,7 @@ Hop onboard grab a cuppa and let’s see where we end up
 
 <br>
 
-## Credits
+### Credits
 
 I couldn't have made any of these without the wonderful tools, work and tutorials of
   - [Canvas-sketch](https://github.com/mattdesl/canvas-sketch)
