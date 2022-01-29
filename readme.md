@@ -22,7 +22,8 @@ Hop onboard grab a cuppa and let’s see where we end up
 ## Skip to an experiment
 
 - [01 Circle Grid](https://github.com/hannahleggett/Experiments_GenArt/tree/master/01%20Circle%20Grid)
-- [02 Outline Geometry](https://github.com/hannahleggett/Experiments_GenArt/tree/master/02%20Outline%20Geometry)
+- [02 Outline Squares](https://github.com/hannahleggett/Experiments_GenArt/tree/master/02%20Outline%20Squares)
+- 03 Type characters
 
 <br>
 
