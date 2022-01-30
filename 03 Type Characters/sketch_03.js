@@ -9,23 +9,27 @@ const settings = {
   // can update setup units, ppi, dimensions etc
   dimensions: [ 2048, 2048 ],
   animate: true,
-  duration: 20
+  duration: 20,
+  suffix: random.getSeed(),
 };
+
+random.setSeed(random.getRandomSeed());
+console.log(random.getSeed());
 
 const params = {
   z: 10,
-  freq: 0.01,
-  amp: 1,
+  freq: 0.4,
+  amp: 1.5,
   animate: true,
   frame: 1,
-  count: 30,
-  wide: 0.1,
-  length: 0.1,
+  count: 10,
+  wide: 1.2,
+  rotation: 1.5,
   margin: 600,
   h: 0,
-  s: 0,
-  l: 90,
-  light: false,
+  s: 80,
+  l: 10,
+  light: true,
   dark: false,
   opacity: 0.5,
 };
@@ -41,9 +45,9 @@ const sketch = () => {
     else if (params.dark === true) {
       context.fillStyle = `hsl(0, 0%, 10%)`;
     }
-    else{
-    context.fillStyle = `hsl(${params.h}, ${params.s}%, ${params.l}%)`
-    }
+    // else{
+    // context.fillStyle = `hsl(${params.h}, ${params.s}%, ${params.l}%)`
+    // }
 
     context.fillRect(0, 0, width, height);
 
@@ -54,24 +58,31 @@ const sketch = () => {
   
   const createGrid = () => {
     const points = [];
+    const points2 = [];
     const count = params.count;
 
     for (let x = 0; x < count; x++) {
       for (let y = 0; y < count; y++) {
 
 
-          n = Math.abs(random.noise3D(x, y, params.z, frequency = (f * params.freq) * 0.1, amplitude = params.amp))
+          // n = Math.abs(random.noise3D(x, y, params.z, frequency = (f * params.freq) * 0.01, amplitude = params.amp))
+          n = random.noise3D(x, y, params.z, frequency = (f * params.freq) * 0.01, amplitude = params.amp)
+          n2 = random.noise3D(x, y, params.z, frequency = (f * params.freq) * 0.01, amplitude = params.amp)
 
           //creates uv space 0.0 top left to 1.0 bottom right
           // const u = x / (count - 1);    //(-1 shifts it so it is centred onscreen)
           const u = count <= 1 ? 0.5 : x / (count - 1);         // (-1 shifts it so it is drawn centred to the point)
-          const v = count <= 1 ? 0.5 : y / (count - 1);         // terniary fixes if its a low number the circle is centred (0.5) 
+          const v = count <= 1 ? 0.5 : y / (count - 1);
+          // const radius = Math.abs(random.noise1D(u, v)) * 0.2;          // terniary fixes if its a low number the circle is centred (0.5) 
+          // const radius = n * params.wide;          // terniary fixes if its a low number the circle is centred (0.5) 
           
           points.push({
-            // radius: random.value() * 0.005,
-            // radius: n * 0.005,
-            length: n * params.length,
-            wide: n * params.wide,
+            // wide: n * params.wide,
+            // radius: n * params.wide,
+            // rotation: n * 0.01,
+            // rotation: n * params.length,
+            radius: n2 * 5,
+            rotation: params.rotation * n,
             position: [ u, v ]
           });
       }
@@ -80,26 +91,26 @@ const sketch = () => {
   };
 
   random.setSeed(515);
-  const points = createGrid().filter(() => random.value() > 0.5);
+  const points = createGrid().filter(() => random.value() > 0.3);
   const margin = params.margin;
 
-  let hrange = [43, 20, 79];
-  let srange = [54, 40, 76];
-  let lrange = [113, 5, 83];
+  // let hrange = [43, 20, 79];
+  // let srange = [54, 40, 76];
+  // let lrange = [113, 5, 83];
 
     // destructures the u and v values from points using ES6
     points.forEach(data => {
       const {
         position,
-        wide,
-        length
+        radius,
+        rotation,
       } = data;
 
       const [ u, v ] = position;
 
-      let h = hrange[random.rangeFloor(0, 3)];
-      let s = srange[random.rangeFloor(0, 3)];
-      let l = lrange[random.rangeFloor(0, 3)];
+      // let h = hrange[random.rangeFloor(0, 3)];
+      // let s = srange[random.rangeFloor(0, 3)];
+      // let l = lrange[random.rangeFloor(0, 3)];
 
       // scale back up to pixel space so gives exact position of grid - const x = u * width;
       // add margin with lerp
@@ -107,18 +118,30 @@ const sketch = () => {
       const y = lerp(margin, height - margin, v);
 
       // draw circles
+      // context.beginPath();
+
+      let w = params.wide * 10; 
+
+      context.save();
+
+      context.fillStyle = `hsla(${params.h}, ${params.s * rotation}%, ${params.l}%, ${params.opacity})`;
+      context.font = `${radius * w}px "Helvetica"`;
+      context.translate(x, y);
+      context.rotate(rotation);
+      context.fillText('H', 0, 0);
+
+      context.restore();
+
+      context.save();
+
+      context.fillStyle = `hsla(0, 0%, 100%, ${rotation})`;
       context.beginPath();
+      context.arc( x, y,  w, 0, Math.PI * 2, false);
+      context.fill();
+      context.rotate(rotation);
+      context.translate(x, y);
 
-      // console.log(s)
-      let w = wide * width;
-      let le = length * height;
-
-      // context.arc( x, y, radius * width, 0, Math.PI * 2, false);
-      context.strokeRect(x - w/2, y - le/2, w, le);
-      // context.strokeStyle = "black";
-      // context.lineWidth = 10;
-      // context.fillStyle = `hsl(${params.h}, ${params.s}%, ${params.l}%)`
-      context.strokeStyle = `hsla(${h}, ${s}%, ${l}%, ${params.opacity})`;
+      context.restore();
 
       // context.fillStyle = 'white'
       // context.fill();
@@ -132,8 +155,8 @@ const createPane = () => {
 
   folder = pane.addFolder({ title: 'Grid' })
   folder.addInput(params, 'count', { min: 10, max: 100, step: 1 })
-  folder.addInput(params, 'wide', { min: 0.0001, max: 0.4 })
-  folder.addInput(params, 'length', { min: 0.0001, max: 0.4 })
+  folder.addInput(params, 'wide', { min: 0.0001, max: 3 })
+  folder.addInput(params, 'rotation', { min: 0.0001, max: 3 })
   folder.addInput(params, 'margin', { min: 0, max: 1000, step: 10})
 
   folder = pane.addFolder({ title: 'Noise' })

@@ -23,7 +23,7 @@ Hop onboard grab a cuppa and let’s see where we end up
 
 - [01 Circle Grid](https://github.com/hannahleggett/Experiments_GenArt/tree/master/01%20Circle%20Grid)
 - [02 Outline Squares](https://github.com/hannahleggett/Experiments_GenArt/tree/master/02%20Outline%20Squares)
-- 03 Type characters
+- [03 Type characters](https://github.com/hannahleggett/experiments_GenArt/tree/master/03%20Type%20Characters)
 
 <br>
 

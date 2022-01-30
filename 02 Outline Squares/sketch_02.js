@@ -1,4 +1,5 @@
 const canvasSketch = require('canvas-sketch');
+const { lerpFrames } = require('canvas-sketch-util/math');
 const { lerp } = require('canvas-sketch-util/math');
 const random = require('canvas-sketch-util/random');
 const { noise3D } = require('canvas-sketch-util/random');
@@ -18,13 +19,13 @@ const params = {
   amp: 1,
   animate: true,
   frame: 1,
-  count: 30,
-  wide: 0.1,
+  count: 20,
+  wide: 0.01,
   length: 0.1,
   margin: 600,
-  h: 0,
-  s: 0,
-  l: 90,
+  h: 180,
+  s: 48,
+  l: 30,
   light: false,
   dark: false,
   opacity: 0.5,
@@ -114,11 +115,11 @@ const sketch = () => {
       let le = length * height;
 
       // context.arc( x, y, radius * width, 0, Math.PI * 2, false);
-      context.strokeRect(x - w/2, y - le/2, w, le);
+      context.fillRect(x - w/2, y - le/2, w, le);
       // context.strokeStyle = "black";
       // context.lineWidth = 10;
-      // context.fillStyle = `hsl(${params.h}, ${params.s}%, ${params.l}%)`
-      context.strokeStyle = `hsla(${h}, ${s}%, ${l}%, ${params.opacity})`;
+      context.fillStyle = `hsl(${params.h + w}, ${params.s + le}%, ${params.l}%)`
+      // context.strokeStyle = `hsla(${h}, ${s}%, ${l}%, ${params.opacity})`;
 
       // context.fillStyle = 'white'
       // context.fill();
